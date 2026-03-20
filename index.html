@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -177,11 +178,11 @@
         }
     }
 
-    /* WISH BUTTON (Center Bottom) */
+    /* WISH BUTTON (Center Bottom - ADJUSTED FOR BETTER MOBILE VISIBILITY) */
     #wishEidBtn {
         display: none;
         position: absolute;
-        bottom: 40px;
+        bottom: 80px;
         left: 50%;
         transform: translateX(-50%);
         padding: 14px 32px;
@@ -394,21 +395,56 @@
         100% { opacity: 0.7; transform: scale(1.2);}
     }
 
+    /* Responsive adjustments for better mobile visibility */
+    @media (max-width: 768px) {
+        #wishEidBtn {
+            bottom: 70px;
+            padding: 12px 28px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+    }
+
     @media (max-width: 550px) {
         #terminal { padding: 20px 16px; font-size: 11px; }
         #final { width: 92%; padding: 1.5rem 1rem; border-radius: 44px; }
         .phone-number { font-size: 1.1rem; }
         .wallet-badge { font-size: 0.7rem; padding: 5px 12px; }
-        #wishEidBtn { white-space: nowrap; font-size: 13px; padding: 8px 18px; bottom: 25px; }
+        #wishEidBtn { 
+            bottom: 60px;
+            font-size: 12px; 
+            padding: 10px 20px;
+            white-space: nowrap;
+        }
         .payment-card { padding: 1.2rem; }
         .payment-card h2 { font-size: 1.3rem; }
         #watermark { font-size: 12px; bottom: 12px; right: 12px; padding: 4px 12px; }
+    }
+    
+    @media (max-width: 480px) {
+        #wishEidBtn {
+            bottom: 55px;
+            font-size: 11px;
+            padding: 8px 18px;
+        }
     }
     
     @media (max-width: 380px) {
         .wallet-badge { font-size: 0.65rem; padding: 4px 10px; }
         .payment-detail { padding: 10px; }
         .phone-number { font-size: 1rem; }
+        #wishEidBtn {
+            bottom: 50px;
+            font-size: 10px;
+            padding: 8px 16px;
+        }
+    }
+    
+    /* For devices with notch or dynamic island */
+    @supports (padding-top: env(safe-area-inset-top)) {
+        #wishEidBtn {
+            bottom: calc(60px + env(safe-area-inset-bottom));
+        }
     }
     
     /* Custom scrollbar for payment card */
@@ -440,7 +476,7 @@
     <div style="margin-top: 28px; font-size: 13px; letter-spacing: 2px; color: #5b6e9e;">✦  تَقَبَّلَ اللهُ مِنَّا وَمِنْكُمْ  ✦</div>
 </div>
 
-<!-- Wish Button (center bottom) -->
+<!-- Wish Button (center bottom - ADJUSTED POSITION) -->
 <button id="wishEidBtn">💝 Wish Him Back Eid Mubarak 💝</button>
 
 <!-- Payment / Eidi Modal with App Links -->
