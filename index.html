@@ -178,39 +178,125 @@
         }
     }
 
-    /* WISH BUTTON (Center Bottom - ADJUSTED FOR BETTER MOBILE VISIBILITY) */
-    #wishEidBtn {
-        display: none;
+    /* WISH BUTTON CONTAINER WITH ARROW INDICATOR */
+    .wish-container {
         position: absolute;
-        bottom: 80px;
+        bottom: 70px;
         left: 50%;
         transform: translateX(-50%);
+        z-index: 35;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        animation: bounceContainer 1.5s ease-in-out infinite;
+    }
+
+    @keyframes bounceContainer {
+        0%, 100% {
+            transform: translateX(-50%) translateY(0);
+        }
+        50% {
+            transform: translateX(-50%) translateY(-8px);
+        }
+    }
+
+    /* Animated Arrow */
+    .arrow-indicator {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        animation: pulseArrow 1s ease-in-out infinite;
+    }
+
+    .arrow-down {
+        font-size: 32px;
+        animation: arrowBounce 1s ease-in-out infinite;
+        filter: drop-shadow(0 0 8px #ff69b4);
+    }
+
+    @keyframes arrowBounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(10px);
+        }
+    }
+
+    @keyframes pulseArrow {
+        0%, 100% {
+            opacity: 0.7;
+            text-shadow: 0 0 5px #ff69b4;
+        }
+        50% {
+            opacity: 1;
+            text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff1493;
+        }
+    }
+
+    .arrow-text {
+        font-size: 14px;
+        color: #ffb6c1;
+        background: rgba(0,0,0,0.6);
+        padding: 4px 12px;
+        border-radius: 20px;
+        backdrop-filter: blur(4px);
+        font-weight: bold;
+        letter-spacing: 1px;
+        white-space: nowrap;
+        animation: pulseText 1s ease-in-out infinite;
+    }
+
+    @keyframes pulseText {
+        0%, 100% {
+            color: #ffb6c1;
+        }
+        50% {
+            color: #ff69b4;
+            text-shadow: 0 0 8px #ff69b4;
+        }
+    }
+
+    #wishEidBtn {
         padding: 14px 32px;
         border-radius: 60px;
-        background: linear-gradient(135deg, rgba(255, 200, 100, 0.25), rgba(255, 100, 150, 0.35));
+        background: linear-gradient(135deg, rgba(255, 200, 100, 0.3), rgba(255, 100, 150, 0.45));
         backdrop-filter: blur(20px);
         color: #ffecb3;
         font-size: clamp(16px, 3vw, 22px);
         font-weight: bold;
         font-family: monospace;
-        border: 1px solid rgba(255, 215, 0, 0.7);
+        border: 2px solid rgba(255, 215, 0, 0.8);
         cursor: pointer;
         transition: all 0.3s ease;
-        z-index: 35;
         letter-spacing: 1.5px;
-        box-shadow: 0 0 20px rgba(255, 200, 0, 0.4);
+        box-shadow: 0 0 20px rgba(255, 200, 0, 0.5);
         white-space: nowrap;
+        animation: buttonGlow 1.5s ease-in-out infinite;
     }
 
     #wishEidBtn:hover {
-        transform: translateX(-50%) scale(1.08);
-        background: rgba(255, 180, 60, 0.5);
+        transform: scale(1.08);
+        background: rgba(255, 180, 60, 0.6);
         border-color: #ffd966;
         box-shadow: 0 0 35px rgba(255, 200, 0, 0.9);
         color: #fff5e0;
     }
 
-    /* PAYMENT MODAL / PAGE (Eidi Portal) - REDUCED FONT SIZES */
+    @keyframes buttonGlow {
+        0%, 100% {
+            box-shadow: 0 0 20px rgba(255, 200, 0, 0.4);
+            border-color: rgba(255, 215, 0, 0.7);
+        }
+        50% {
+            box-shadow: 0 0 35px rgba(255, 105, 180, 0.7), 0 0 25px rgba(255, 200, 0, 0.6);
+            border-color: #ff69b4;
+        }
+    }
+
+    /* PAYMENT MODAL / PAGE (Eidi Portal) */
     .payment-overlay {
         position: fixed;
         top: 0;
@@ -350,7 +436,7 @@
         transform: scale(1.02);
     }
 
-    /* watermark - INCREASED SIZE */
+    /* watermark */
     #watermark {
         position: fixed;
         bottom: 20px;
@@ -395,13 +481,20 @@
         100% { opacity: 0.7; transform: scale(1.2);}
     }
 
-    /* Responsive adjustments for better mobile visibility */
+    /* Responsive adjustments */
     @media (max-width: 768px) {
+        .wish-container {
+            bottom: 60px;
+        }
+        .arrow-down {
+            font-size: 28px;
+        }
+        .arrow-text {
+            font-size: 12px;
+        }
         #wishEidBtn {
-            bottom: 70px;
             padding: 12px 28px;
             font-size: 14px;
-            white-space: nowrap;
         }
     }
 
@@ -410,11 +503,19 @@
         #final { width: 92%; padding: 1.5rem 1rem; border-radius: 44px; }
         .phone-number { font-size: 1.1rem; }
         .wallet-badge { font-size: 0.7rem; padding: 5px 12px; }
-        #wishEidBtn { 
-            bottom: 60px;
-            font-size: 12px; 
-            padding: 10px 20px;
+        .wish-container {
+            bottom: 55px;
+        }
+        .arrow-down {
+            font-size: 24px;
+        }
+        .arrow-text {
+            font-size: 10px;
             white-space: nowrap;
+        }
+        #wishEidBtn {
+            font-size: 12px;
+            padding: 10px 20px;
         }
         .payment-card { padding: 1.2rem; }
         .payment-card h2 { font-size: 1.3rem; }
@@ -422,28 +523,22 @@
     }
     
     @media (max-width: 480px) {
+        .wish-container {
+            bottom: 50px;
+        }
+        .arrow-down {
+            font-size: 20px;
+        }
         #wishEidBtn {
-            bottom: 55px;
             font-size: 11px;
             padding: 8px 18px;
         }
     }
     
-    @media (max-width: 380px) {
-        .wallet-badge { font-size: 0.65rem; padding: 4px 10px; }
-        .payment-detail { padding: 10px; }
-        .phone-number { font-size: 1rem; }
-        #wishEidBtn {
-            bottom: 50px;
-            font-size: 10px;
-            padding: 8px 16px;
-        }
-    }
-    
-    /* For devices with notch or dynamic island */
+    /* For devices with notch */
     @supports (padding-top: env(safe-area-inset-top)) {
-        #wishEidBtn {
-            bottom: calc(60px + env(safe-area-inset-bottom));
+        .wish-container {
+            bottom: calc(55px + env(safe-area-inset-bottom));
         }
     }
     
@@ -476,8 +571,14 @@
     <div style="margin-top: 28px; font-size: 13px; letter-spacing: 2px; color: #5b6e9e;">✦  تَقَبَّلَ اللهُ مِنَّا وَمِنْكُمْ  ✦</div>
 </div>
 
-<!-- Wish Button (center bottom - ADJUSTED POSITION) -->
-<button id="wishEidBtn">💝 Wish Him Back Eid Mubarak 💝</button>
+<!-- Wish Button Container with Arrow Indicator -->
+<div id="wishContainer" class="wish-container">
+    <div class="arrow-indicator">
+        <div class="arrow-down">👇</div>
+        <div class="arrow-text">✨ Click Here! ✨</div>
+    </div>
+    <button id="wishEidBtn">💝 Wish Him Back Eid Mubarak 💝</button>
+</div>
 
 <!-- Payment / Eidi Modal with App Links -->
 <div id="paymentModal" class="payment-overlay">
@@ -678,6 +779,7 @@
         const launchBtn = document.getElementById("launch");
         const finalDiv = document.getElementById("final");
         const terminalDivElem = document.getElementById("terminal");
+        const wishContainer = document.getElementById("wishContainer");
         const wishBtn = document.getElementById("wishEidBtn");
         const paymentModal = document.getElementById("paymentModal");
         const closePaymentBtn = document.getElementById("closePaymentBtn");
@@ -691,7 +793,7 @@
                 terminalDivElem.style.display = "none";
                 launchBtn.style.display = "none";
                 finalDiv.style.display = "block";
-                wishBtn.style.display = "block";
+                wishContainer.style.display = "flex";
                 // massive celebration fireworks
                 for (let i = 0; i < 12; i++) {
                     setTimeout(() => {
@@ -776,15 +878,15 @@
         style.textContent = `#final { background: rgba(2, 10, 25, 0.7); backdrop-filter: blur(24px); border: 1px solid rgba(34, 211, 238, 0.4); } .blessing { background: none; -webkit-text-fill-color: #cbd5e6; color: #cddcff; }`;
         document.head.appendChild(style);
         
-        // pre-hide wish button until final screen
-        wishBtn.style.display = "none";
+        // pre-hide wish container until final screen
+        wishContainer.style.display = "none";
         
         // Ensure payment modal is hidden initially
         if (paymentModal) {
             paymentModal.classList.remove("active");
         }
         
-        console.log("Page loaded, wish button ready!");
+        console.log("Page loaded, wish button ready with arrow indicator!");
     })();
 </script>
 </body>
